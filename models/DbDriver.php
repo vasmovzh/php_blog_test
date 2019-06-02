@@ -8,7 +8,7 @@
  * Project:   php_blog_test                                           *
  **********************************************************************/
 
-namespace DbDriver;
+namespace Models;
 
 use mysqli;
 use mysqli_result;
@@ -74,7 +74,7 @@ class DbDriver
     private $mysqli;
 
     /**
-     * Getting a single instance of Db_Driver class
+     * Getting a single instance of class
      *
      * @return DbDriver
      */

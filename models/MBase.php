@@ -4,13 +4,31 @@
  * @license   GNU AGPLv3                                              *
  * @copyright Copyright (c) 2019, vasmovzh (r)                        *
  * Date:      02.06.2019                                              *
- * Time:      21:14                                                   *
+ * Time:      21:21                                                   *
  * Project:   php_blog_test                                           *
  **********************************************************************/
 
-/**
- * Just defining constants
- */
+namespace Models;
 
-define('ARTICLES_PER_PAGE', 6); // articles per page
-define('CHARS_FOR_PREVIEW', 127); // characters for article preview
+use mysqli;
+
+/**
+ * Base model class
+ */
+class MBase
+{
+    /**
+     * Database driver
+     *
+     * @var mysqli
+     */
+    protected $mysqli;
+
+    /**
+     * MBase constructor
+     */
+    protected function __construct()
+    {
+        $this->mysqli = DbDriver::getInstance();
+    }
+}

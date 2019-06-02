@@ -45,7 +45,7 @@ class MArticles extends MBase
     }
 
     /**
-     * Couter of pages for pagination
+     * Counter of pages for pagination
      *
      * @return float number of pages
      */

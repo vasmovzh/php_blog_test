@@ -1,7 +1,14 @@
 <?php
-/**
- * index
- */
+/**********************************************************************
+ * @author    Valeriy A. Smovzh aka vasmovzh (r) <vasmovzh@yandex.ru> *
+ * @license   GNU AGPLv3                                              *
+ * @copyright Copyright (c) 2019, vasmovzh (r)                        *
+ * Date:      02.06.2019                                              *
+ * Time:      20:58                                                   *
+ * Project:   php_blog_test                                           *
+ **********************************************************************/
+
+use Controllers\CArticles;
 
 require_once "settings.php";
 
@@ -10,25 +17,33 @@ ini_set('display_errors', 'On');
 
 setlocale(LC_ALL, 'ru_RU.UTF-8');
 mb_internal_encoding('UTF-8');
-header("Content-type:text/html;charset=utf-8");
+header('Content-type:text/html;charset=utf-8');
 
 session_start();
 
-function __autoload($classname) {
-    $classname = strtolower($classname);
-    $dir_first_letter = mb_substr($classname, 0, 1);
+/**
+ * Autolader
+ *
+ * @param string $className class name
+ */
+function __autoload(string $className)
+{
+    $dirFirstLetter = mb_substr($className, 0, 1);
+    $dirName        = $dirFirstLetter === 'C' ? 'Controllers' : 'Models';
+    $fileName       = $dirName . '/' . $className . '.php';
 
-    if ($dir_first_letter === "c") $dir_name = "controllers";
-    else $dir_name = "models";
-
-    if (is_file("{$dir_name}/{$classname}.php"))
-        require_once "{$dir_name}/{$classname}.php";
-    else die("File \"{$dir_name}/{$classname}.php\" not found!");
+    if (is_file($fileName)) {
+        /** @noinspection PhpIncludeInspection */
+        require_once $fileName;
+    } else {
+        die(sprintf('File "%s/%s.php" not found!', $dirName, $className));
+    }
 }
 
 $action = "actionIndex";
-if (isset($_GET['act']))
-    $action = "action" . $_GET['act'];
+if (isset($_GET['act'])) {
+    $action = 'action' . $_GET['act'];
+}
 
-$controller = new C_Articles();
+$controller = new CArticles();
 $controller->request($action);

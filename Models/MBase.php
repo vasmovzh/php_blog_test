@@ -3,8 +3,8 @@
  * @author    Valeriy A. Smovzh aka vasmovzh (r) <vasmovzh@yandex.ru> *
  * @license   GNU AGPLv3                                              *
  * @copyright Copyright (c) 2019, vasmovzh (r)                        *
- * Date:      02.06.2019                                              *
- * Time:      21:21                                                   *
+ * Date:      03.08.2019                                              *
+ * Time:      10:14                                                   *
  * Project:   php_blog_test                                           *
  **********************************************************************/
 

@@ -73,7 +73,7 @@ abstract class CBase extends CController
     protected function render()
     {
         $params = ['title' => $this->title, 'content' => $this->content];
-        $html   = $this->template("Views/v_main.php", $params);
+        $html   = $this->template('Views/v_main.php', $params);
         echo $html;
     }
 

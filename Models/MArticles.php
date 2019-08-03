@@ -64,6 +64,7 @@ class MArticles extends MBase
     public function getArticle(int $id): array
     {
         $id       = (int) $id;
+        /** @noinspection SqlNoDataSourceInspection */
         $sqlQuery = sprintf(
             'SELECT * FROM articles JOIN authors USING(id_author)'
             . ' JOIN images USING(id_img) WHERE `id_article`=%s',

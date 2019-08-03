@@ -269,6 +269,8 @@ class DbDriver
         switch ($tableName) {
             case ("articles"):
                 $sqlQuery = <<<query
+-- noinspection SqlDialectInspection
+
 CREATE TABLE IF NOT EXISTS `articles` (
   `id_article` int(11) NOT NULL AUTO_INCREMENT,
   `id_author` int(11) NOT NULL,
@@ -282,6 +284,8 @@ query;
                 break;
             case ("authors"):
                 $sqlQuery = <<<query
+-- noinspection SqlDialectInspection
+
 CREATE TABLE IF NOT EXISTS `authors` (
   `id_author` int(11) NOT NULL AUTO_INCREMENT,
   `name` varchar(50) NOT NULL,
@@ -292,6 +296,8 @@ query;
                 break;
             case ("images"):
                 $sqlQuery = <<<query
+-- noinspection SqlDialectInspection
+
 CREATE TABLE IF NOT EXISTS `images` (
   `id_img` int(11) NOT NULL AUTO_INCREMENT,
   `path` varchar(255) NOT NULL,
@@ -300,7 +306,7 @@ CREATE TABLE IF NOT EXISTS `images` (
 query;
                 break;
             default:
-                die("You can't create such table! Only tables 'articles', 'authors' and 'images' are required!");
+                die('You can\'t create such table! Only tables "articles", "authors" and "images" are required!');
         }
 
         return $this->mysqli->query($sqlQuery);

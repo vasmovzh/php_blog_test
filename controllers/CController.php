@@ -76,6 +76,7 @@ abstract class CController
         if (file_exists($filename)) {
             extract($params);
             ob_start();
+            /** @noinspection PhpIncludeInspection */
             include $filename;
             return ob_get_clean();
         } else {
@@ -96,7 +97,7 @@ abstract class CController
 
     public function __call($name, $arguments)
     {
-        header("{$_SERVER['SERVER_PROTOCOL']} 404 Not Found");
-        die("404 Page Not Found!");
+        header($_SERVER['SERVER_PROTOCOL'] . ' 404 Not Found');
+        die('404 Page Not Found!');
     }
 }

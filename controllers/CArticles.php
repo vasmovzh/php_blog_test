@@ -38,7 +38,7 @@ class CArticles extends CBase
     public function actionArticleView()
     {
         $article       = $this->mArticles->getArticle($_GET['id'])[0];
-        $this->title   .= "::" . $article['title'];
-        $this->content = $this->template("Views/v_article.php", ['article' => $article]);
+        $this->title   .= '::' . $article['title'];
+        $this->content = $this->template('Views/v_article.php', ['article' => $article]);
     }
 }

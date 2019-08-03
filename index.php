@@ -8,6 +8,8 @@
  * Project:   php_blog_test                                           *
  **********************************************************************/
 
+use Controllers\CArticles;
+
 require_once "settings.php";
 
 error_reporting(E_ALL);
@@ -28,9 +30,10 @@ function __autoload(string $className)
 {
     $dirFirstLetter = mb_substr($className, 0, 1);
     $dirName        = $dirFirstLetter === 'C' ? 'Controllers' : 'Models';
-    $fileName = $dirName . '/' . $className . '.php';
+    $fileName       = $dirName . '/' . $className . '.php';
 
     if (is_file($fileName)) {
+        /** @noinspection PhpIncludeInspection */
         require_once $fileName;
     } else {
         die(sprintf('File "%s/%s.php" not found!', $dirName, $className));
@@ -39,8 +42,8 @@ function __autoload(string $className)
 
 $action = "actionIndex";
 if (isset($_GET['act'])) {
-    $action = "action" . $_GET['act'];
+    $action = 'action' . $_GET['act'];
 }
 
-$controller = new C_Articles();
+$controller = new CArticles();
 $controller->request($action);
